@@ -1,5 +1,11 @@
 import { exampleRouter } from "~/server/api/routers/example";
-import { createTRPCRouter } from "~/server/api/trpc";
+import { createTRPCRouter, mergeTRCPRouters } from "~/server/api/trpc";
+import categoriesMutationRouters from "./routers/categories.mutation";
+import categoriesQueriesRouters from "./routers/categories.queries";
+import postsMutationRouters from "./routers/posts.mutation";
+import postsQueriesRouters from "./routers/posts.queries";
+import commentsQueriesRouters from "./routers/comments.queries";
+import commentsMutationRouters from "./routers/comments.mutation";
 
 /**
  * This is the primary router for your server.
@@ -8,6 +14,9 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
+  categories: mergeTRCPRouters(categoriesMutationRouters, categoriesQueriesRouters),
+  posts: mergeTRCPRouters(postsMutationRouters, postsQueriesRouters),
+  comments: mergeTRCPRouters(commentsMutationRouters, commentsQueriesRouters)
 });
 
 // export type definition of API

@@ -17,6 +17,9 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: ['cdn.discordapp.com', 'cdn-icons-png.flaticon.com','lh3.googleusercontent.com','assets.teenvogue.com']
+  }
 };
 
 export default config;
