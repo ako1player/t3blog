@@ -1,4 +1,3 @@
-import { exampleRouter } from "~/server/api/routers/example";
 import { createTRPCRouter, mergeTRCPRouters } from "~/server/api/trpc";
 import categoriesMutationRouters from "./routers/categories.mutation";
 import categoriesQueriesRouters from "./routers/categories.queries";
@@ -13,7 +12,6 @@ import commentsMutationRouters from "./routers/comments.mutation";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  example: exampleRouter,
   categories: mergeTRCPRouters(categoriesMutationRouters, categoriesQueriesRouters),
   posts: mergeTRCPRouters(postsMutationRouters, postsQueriesRouters),
   comments: mergeTRCPRouters(commentsMutationRouters, commentsQueriesRouters)

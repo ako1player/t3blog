@@ -5,8 +5,9 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import { NextPage } from "next";
+import { signIn } from "next-auth/react";
     
-    export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
+export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
     const { status } = useSession();
 
     const [desc, setDesc] = useState<string>("");
@@ -17,16 +18,16 @@ import { NextPage } from "next";
     
     //ADD COMMENTS
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        postComment.mutateAsync({desc: desc, postSlug: postSlug});
+        e.preventDefault();
+        await postComment.mutateAsync({desc: desc, postSlug: postSlug});
         setDesc("");
         await data.refetch();
     };
 
     return (
         <div className="text-white">
-        <h1>Comments</h1>
         {status === "authenticated" ? (
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             <form onSubmit={handleSubmit}>
             <textarea
             className="text-black"
@@ -37,13 +38,13 @@ import { NextPage } from "next";
             <button type="submit">Send</button>
             </form>
         ) : (
-            <Link href="/login">Login to write a comment</Link>
+            <button onClick={()=> signIn()} className="border rounded bg-purple-600 hover:bg-purple-800">Login to write a comment</button>
         )}
-        <div>
+        <div className="pt-2 w-1/3 border rounded">
             {isLoading
             ? "loading"
             : data.data?.map((item) => (
-                <div key={item.id}>
+                <div key={item.id} className="">
                     <div>
                     {item?.user?.image && (
                         <Image

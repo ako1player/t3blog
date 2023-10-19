@@ -35,7 +35,8 @@ export default function ShowPost(props:Slug){
 }
 
 
-export const getStaticProps: GetStaticProps =async (context) => {
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug;
 
   return {

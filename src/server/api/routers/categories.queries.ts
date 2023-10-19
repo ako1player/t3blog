@@ -1,7 +1,7 @@
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 const categoriesQueriesRouters = createTRPCRouter({
-    get: protectedProcedure.query(async ({ctx, input }) =>{
+    get: publicProcedure.query(async ({ctx }) =>{
         const categories = await ctx.db.category.findMany()
 
         return categories;

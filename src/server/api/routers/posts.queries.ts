@@ -1,15 +1,15 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
 const postsQueriesRouters = createTRPCRouter({
-    get: protectedProcedure.query(async ({ctx, input }) =>{
+    get: publicProcedure.query(async ({ctx}) =>{
         const posts = await ctx.db.post.findMany()
 
         return posts;
     }),
 
-    getSinglePost: protectedProcedure.input(z.string()).query(async ({ctx, input:slug}) =>{
+    getSinglePost: publicProcedure.input(z.string()).query(async ({ctx, input:slug}) =>{
         const singlePost = await ctx.db.post.findUnique({
             where: {
                 slug
@@ -30,7 +30,7 @@ const postsQueriesRouters = createTRPCRouter({
         return singlePost;
     }),
 
-    getCategoryPost: protectedProcedure.input(z.string()).query(async ({ctx, input:cat}) =>{
+    getCategoryPost: publicProcedure.input(z.string()).query(async ({ctx, input:cat}) =>{
         const catPost = await ctx.db.post.findMany({
             where:{
                 catSlug: cat
