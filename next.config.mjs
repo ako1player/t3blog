@@ -18,7 +18,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ['cdn.discordapp.com', 'cdn-icons-png.flaticon.com','lh3.googleusercontent.com','assets.teenvogue.com']
+    domains: ['cdn.discordapp.com', 'cdn-icons-png.flaticon.com','lh3.googleusercontent.com','assets.teenvogue.com',"img.freepik.com", 'www.freepik.com']
   }
 };
 

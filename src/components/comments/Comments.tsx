@@ -1,7 +1,7 @@
 "use client"
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState, useRef } from "react";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import { NextPage } from "next";
@@ -12,7 +12,6 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
 
     const [desc, setDesc] = useState<string>("");
     const [isLoading, setIsLoading] = useState(false);
-
     const data = api.comments.get.useQuery(postSlug);
     const postComment = api.comments.postComment.useMutation();
     
@@ -24,18 +23,28 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
         await data.refetch();
     };
 
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = "h-6";
+            textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+        }
+    }, [desc]);
+
     return (
-        <div className="text-white">
+        <div className="text-white pt-2">
         {status === "authenticated" ? (
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            <form onSubmit={handleSubmit}>
-            <textarea
-            className="text-black"
-                placeholder="write a comment..."
-                onChange={(e) => setDesc(e.target.value)}
-                value={desc}
-            />
-            <button type="submit">Send</button>
+            <form onSubmit={handleSubmit} className="">
+                <textarea
+                    ref={textareaRef}
+                    className={`rounded w-1/3 overflow-hidden bg-inherit outline-none resize-none h-6 border-b`}
+                    placeholder="write a comment..."
+                    onChange={(e) => setDesc(e.target.value)}
+                    value={desc}
+                />
+                <button type="submit">Send</button>
             </form>
         ) : (
             <button onClick={()=> signIn()} className="border rounded bg-purple-600 hover:bg-purple-800">Login to write a comment</button>
@@ -44,7 +53,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
             {isLoading
             ? "loading"
             : data.data?.map((item) => (
-                <div key={item.id} className="">
+                <div key={item.id}>
                     <div>
                     {item?.user?.image && (
                         <Image
@@ -60,7 +69,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
                         <span>{item.createdAt.toString().slice(3,15)}</span>
                     </div>
                     </div>
-                    <p>{item.desc}</p>
+                    <p className=" break-words">{item.desc}</p>
                 </div>
                 ))}
         </div>

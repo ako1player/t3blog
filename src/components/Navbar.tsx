@@ -16,7 +16,7 @@ export const Navbar = () => {
     return (
         <nav className='flex bg-inherit text-white'>
             {/* desktop */}
-            <div className='sm:flex hidden justify-between items-center w-full'>
+            <div className='sm:flex hidden justify-between items-center w-full z-40'>
                 <div className="sm:flex sm:flex-row mt-2">
                     <Link href={'https://www.linkedin.com/in/adriangarciarios/'} target='_blank'><Linkedin size={35} /></Link>
                     <Link href={'https://github.com/ako1player'} target='_blank'><Github size={35} /></Link>
@@ -24,7 +24,7 @@ export const Navbar = () => {
                 <h1 className="text-3xl md:pl-44"><Link href={'/'}>Adrian Blog About Stuff</Link></h1>
                 <div className="flex">
                     <Link href={'/'} className='mx-2'>Home</Link>
-                    <div>
+                    <div className='relative'>
                         <Link href={''} className='mx-2' onMouseEnter={()=>setToggle(!toggle)}>Categories<ChevronDown size="15"/></Link>
                         {toggle && 
                             <div className='flex flex-col absolute bg-violet-800 rounded ml-4' onMouseLeave={()=>setToggle(!toggle)}>
@@ -39,25 +39,25 @@ export const Navbar = () => {
                 </div>
             </div>
             {/* Mobile */}
-            <div className="sm:hidden flex flex-1 justify-between items-center">
+            <div className="sm:hidden flex flex-1 justify-between items-center z-40">
                 <div className="">Adrians Blog</div>
                 <div onClick={()=> setMenu(!menu)}>{menu ? <CloseOutline size={40}/> : <Menu2Outline size={40} />}</div>
-                <div className={`${!menu ? 'hidden' : 'flex'} absolute top-5 right-0 my-2 border rounded`}>
-                    <div className='flex flex-col bg-white text-purple-900'>
+                <div className={`${!menu ? 'hidden' : 'flex'} absolute top-5 right-0 my-2`}>
+                    <div className='flex flex-col bg-violet-800 rounded'>
                         <div className="flex flex-col">
-                            <Link href={'/'} className='mx-2'>Home</Link>
+                            <Link href={'/'} className='mx-2' onClick={()=> setMenu(!menu)}>Home</Link>
                             <div>
-                                <Link href={'/'} className='mx-2' onClick={()=>setToggle(!toggle)}>Categories<ChevronDown size="15"/></Link>
+                                <span className='mx-2 cursor-pointer' onClick={()=> setToggle(!toggle)}>Categories<ChevronDown size="15"/></span>
                                 {toggle && 
-                                    <div className='flex flex-col ml-4 border w-auto rounded bg-white'>
+                                    <div className='flex flex-col ml-4 border w-auto rounded'>
                                         {categories.data?.map((cat)=>(
-                                            <Link href={`/${cat.title}`} key={cat.id} className='hover:bg-violet-300'>{cat.title}</Link>
+                                            <Link href={`/${cat.title}`} key={cat.id} className='hover:bg-violet-300' onClick={()=> {setMenu(!menu), setToggle(!toggle)}}>{cat.title}</Link>
                                         ))}
                                     </div>
                                 }
                             </div>
-                            <Link href={'/'} className='mx-2'>Contact</Link>
-                            <Link href={'/'} className='mx-2'>About</Link>
+                            <Link href={'/'} className='mx-2' onClick={()=> setMenu(!menu)}>Contact</Link>
+                            <Link href={'/'} className='mx-2' onClick={()=> setMenu(!menu)}>About</Link>
                         </div>
                     </div>
                 </div>

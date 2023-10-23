@@ -14,8 +14,13 @@ export default function Hobbies(){
   const catPosts:any = api.posts.getCategoryPost.useQuery("hobbies")
   
   return (
-    <div>
-      <h1 className='text-white'>Hobbies Category</h1>
+    <div className='pt-1'>
+      <div className='relative'>
+        <div
+        className='w-full h-52 bg-black'
+        />
+        <h1 className='absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Hobbies</h1>
+      </div>
       {catPosts.data?.map((post:Slug) =>(
         <Card item={post} key={post.id}/>
       ))}

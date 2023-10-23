@@ -1,17 +1,19 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import { CardList } from "../components/CardList/CardList";
+import { Featured } from "~/components/featuredpost/Featured";
 
 export default function Home() {
 
   return (
-    <>
+    <main className="">
       <Head>
         <title>Adrians Blog</title>
         <meta name="description" content="Blog by Adrian about random stuff" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=" flex min-h-screen flex-col items-center justify-center">
+        <Featured />
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
@@ -22,7 +24,7 @@ export default function Home() {
         </div>
         <CardList />
       </main>
-    </>
+    </main>
   );
 }
 
