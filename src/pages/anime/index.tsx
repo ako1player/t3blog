@@ -13,7 +13,7 @@ type Slug = {
   img: string
 }
 export default function Anime(){
-  const catPosts:any = api.posts.getCategoryPost.useQuery("anime")
+  const catPosts:string = api.posts.getCategoryPost.useQuery("anime")
   return (
     <div className='pt-1'>
       <div className='relative'>

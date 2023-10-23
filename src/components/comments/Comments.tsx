@@ -33,7 +33,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
     }, [desc]);
 
     return (
-        <div className="text-white pt-2">
+        <div className="pt-2 text-white">
         {status === "authenticated" ? (
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             <form onSubmit={handleSubmit} className="">
@@ -47,9 +47,9 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
                 <button type="submit">Send</button>
             </form>
         ) : (
-            <button onClick={()=> signIn()} className="border rounded bg-purple-600 hover:bg-purple-800">Login to write a comment</button>
+            <button onClick={()=> signIn()} className="w-full bg-purple-600 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
         )}
-        <div className="pt-2 w-1/3 border rounded">
+        <div className="w-full pt-2 border rounded sm:w-1/3">
             {isLoading
             ? "loading"
             : data.data?.map((item) => (
@@ -69,7 +69,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
                         <span>{item.createdAt.toString().slice(3,15)}</span>
                     </div>
                     </div>
-                    <p className=" break-words">{item.desc}</p>
+                    <p className="break-words ">{item.desc}</p>
                 </div>
                 ))}
         </div>

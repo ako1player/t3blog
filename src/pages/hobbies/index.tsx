@@ -11,7 +11,7 @@ type Slug = {
   slug: string
 }
 export default function Hobbies(){
-  const catPosts:any = api.posts.getCategoryPost.useQuery("hobbies")
+  const catPosts:string = api.posts.getCategoryPost.useQuery("hobbies")
   
   return (
     <div className='pt-1'>
