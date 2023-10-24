@@ -14,7 +14,8 @@ export const Navbar = () => {
     const categories = api.categories.get.useQuery();
     //TODO:
     //Make logic to only let users with admin right able to see create post
-    
+    const user = api.users.getUser.useQuery();
+    console.log(user)
     return (
         <nav className='flex text-white bg-inherit'>
             {/* desktop */}

@@ -5,6 +5,7 @@ import postsMutationRouters from "./routers/posts.mutation";
 import postsQueriesRouters from "./routers/posts.queries";
 import commentsQueriesRouters from "./routers/comments.queries";
 import commentsMutationRouters from "./routers/comments.mutation";
+import userQueriesRouter from "./routers/user.queries"
 
 /**
  * This is the primary router for your server.
@@ -14,7 +15,8 @@ import commentsMutationRouters from "./routers/comments.mutation";
 export const appRouter = createTRPCRouter({
   categories: mergeTRCPRouters(categoriesMutationRouters, categoriesQueriesRouters),
   posts: mergeTRCPRouters(postsMutationRouters, postsQueriesRouters),
-  comments: mergeTRCPRouters(commentsMutationRouters, commentsQueriesRouters)
+  comments: mergeTRCPRouters(commentsMutationRouters, commentsQueriesRouters),
+  users: userQueriesRouter,
 });
 
 // export type definition of API
