@@ -12,10 +12,16 @@ export const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     const [menu, setMenu] = useState(false)
     const categories = api.categories.get.useQuery();
+    const { data: sessionData} = useSession();
     //TODO:
     //Make logic to only let users with admin right able to see create post
     const user = api.users.getUser.useQuery();
-    console.log(user)
+    const isAdmin = user.data?.filter((u) => {
+        if(u.id === sessionData?.user.id && u.role ==='Admin'){
+            return u;
+        }
+    })
+
     return (
         <nav className='flex text-white bg-inherit'>
             {/* desktop */}
@@ -37,7 +43,11 @@ export const Navbar = () => {
                             </div>
                         }
                     </div>
+                    {isAdmin?.length !== 0 && isAdmin ? 
                     <Link href='/addPost' className='text-purple-800 bg-white rounded hover:text-white hover:bg-purple-800'>Create A New Post</Link>
+                    :
+                    ''
+                    }
                 </div>
             </div>
             {/* Mobile */}

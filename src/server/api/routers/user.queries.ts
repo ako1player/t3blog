@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
 const userQueriesRouter = createTRPCRouter({
-    getUser: protectedProcedure.query(async ({ctx: {db}, input}) =>{
+    getUser: protectedProcedure.query(async ({ctx: {db}}) =>{
         const user = await db.user.findMany({
             select: {
                 id:true,
@@ -11,6 +11,7 @@ const userQueriesRouter = createTRPCRouter({
                 name: true,
             }
         })
+        return user;
     })
 })
 

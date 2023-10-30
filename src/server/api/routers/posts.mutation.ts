@@ -11,8 +11,8 @@ const postsMutationRouters = createTRPCRouter({
                 img,
                 desc,
                 slug,
+                catSlug,
                 userEmail: session.user.email,
-                catSlug
             }
         });
 
