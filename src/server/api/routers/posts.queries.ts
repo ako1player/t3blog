@@ -44,6 +44,24 @@ const postsQueriesRouters = createTRPCRouter({
 
         return catPost
     }),
+    getRandomPost: publicProcedure.query(async ({ctx}) =>{
+        const count = await ctx.db.post.count();
+        const random = Math.floor(Math.random() * count);
+        const randomPost = await ctx.db.post.findMany({
+            take: 1,
+            skip: random
+        })
+
+        if (!randomPost) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Kudos was not found.",
+            });
+        }
+
+
+        return randomPost;
+    }),
 })
 
 export default postsQueriesRouters
