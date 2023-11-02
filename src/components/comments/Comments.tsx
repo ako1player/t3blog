@@ -47,7 +47,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
                 <button type="submit">Send</button>
             </form>
         ) : (
-            <button onClick={()=> signIn()} className="w-full bg-purple-600 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
+            <button onClick={()=> signIn()} className="w-full bg-violet-800 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
         )}
         <div className="w-full pt-2 border rounded sm:w-1/3">
             {isLoading

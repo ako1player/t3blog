@@ -21,7 +21,7 @@ export default function MoviePost(props:Slug){
 
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps =async (context) => {
+export const getStaticProps: GetStaticProps = (context) => {
   const slug = context.params?.slug;
 
   return {

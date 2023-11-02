@@ -30,7 +30,7 @@ export const Navbar = () => {
                     <Link href={'https://www.linkedin.com/in/adriangarciarios/'} target='_blank'><Linkedin size={35} /></Link>
                     <Link href={'https://github.com/ako1player'} target='_blank'><Github size={35} /></Link>
                 </div>
-                <h1 className="text-3xl md:pl-60"><Link href={'/'}>Adrian Blog About Stuff</Link></h1>
+                <h1 className={sessionData && !isAdmin ? 'text-3xl md:pl-60' : 'text-3xl md:pl-24'}><Link href={'/'}>Adrian Blog About Stuff</Link></h1>
                 <div className="flex">
                     <Link href={'/'} className='mx-2 hover:text-purple-400'>Home</Link>
                     <div className='relative'>

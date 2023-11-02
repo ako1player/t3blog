@@ -4,7 +4,12 @@ import { TRPCError } from "@trpc/server";
 
 const postsQueriesRouters = createTRPCRouter({
     get: publicProcedure.query(async ({ctx}) =>{
-        const posts = await ctx.db.post.findMany()
+        const posts = await ctx.db.post.findMany({
+            orderBy:{
+                createdAt: 'desc',
+            },
+            take: 4,
+        })
 
         return posts;
     }),

@@ -23,7 +23,7 @@ export default function AnimePost(props:Slug){
 }
 
 
-export const getStaticProps: GetStaticProps =async (context) =>{
+export const getStaticProps: GetStaticProps = (context) =>{
   const slug = context.params?.slug;
 
   return {
