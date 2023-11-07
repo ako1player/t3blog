@@ -1,7 +1,8 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
+let lastApiCallTime: number | null = null;
 const postsQueriesRouters = createTRPCRouter({
     get: publicProcedure.query(async ({ctx}) =>{
         const posts = await ctx.db.post.findMany({
@@ -27,7 +28,7 @@ const postsQueriesRouters = createTRPCRouter({
         if (!singlePost) {
             throw new TRPCError({
                 code: "NOT_FOUND",
-                message: "Kudos was not found.",
+                message: "post was not found.",
             });
         }
 
@@ -45,23 +46,28 @@ const postsQueriesRouters = createTRPCRouter({
         return catPost
     }),
     getRandomPost: publicProcedure.query(async ({ctx}) =>{
+        const currentTime = Date.now();
         const count = await ctx.db.post.count();
         const random = Math.floor(Math.random() * count);
-        const randomPost = await ctx.db.post.findMany({
-            take: 1,
-            skip: random
-        })
+        if(lastApiCallTime === null || currentTime - lastApiCallTime >= 4 * 60 * 60 * 1000){
+            //make database query only if its the first call or 4 hours have passed
+            const randomPost = await ctx.db.post.findMany({
+                take: 1,
+                skip: random,
+            })
+            lastApiCallTime = currentTime;
 
-        if (!randomPost) {
-            throw new TRPCError({
-                code: "NOT_FOUND",
-                message: "Kudos was not found.",
-            });
+            if (!randomPost) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "post was not found.",
+                });
+            }
+    
+    
+            return randomPost;
         }
-
-
-        return randomPost;
-    }),
+    })
 })
 
 export default postsQueriesRouters

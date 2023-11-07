@@ -1,8 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
 
+type Post = {
+  title: string,
+  desc: string,
+  catSlug: string,
+  slug: string
+}
 
-export const Card = ({item}:any) => {
+export const Card = ({item}:Post) => {
   return (
     <div className='px-2 py-2 max-w-xl text-center'>
          <div

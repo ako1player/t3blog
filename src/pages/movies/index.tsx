@@ -28,7 +28,6 @@ export default function Movies(){
         />
         <h1 className='absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Movies</h1>
       </div>
-      {/* // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
       {catPosts.data?.map((post:Slug) =>(
         <Card item={post} key={post.id}/>
       ))}

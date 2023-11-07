@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import React from 'react'
 import { api } from '~/utils/api'
+import { Comments } from '~/components/comments/Comments';
 
 type Slug = {
   title: string,
@@ -16,6 +17,7 @@ export default function HobbyPost(props:Slug){
     <div>
       <h1 className='text-white'>{singlePost.data?.title}</h1>
       <p className='text-white'>{singlePost.data?.desc}</p>
+      <Comments postSlug={props.slug} />
     </div>
   )
 }

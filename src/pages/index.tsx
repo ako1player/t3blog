@@ -12,14 +12,14 @@ export default function Home() {
         <meta name="description" content="Blog by Adrian about random stuff" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className=" flex min-h-screen flex-col items-center justify-center">
-        <Featured />
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+      <main className=" flex flex-col items-center justify-center">
+        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-10 ">
           <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
+            <p className="text-3xl text-white">
               Welcome to da Blog!
             </p>
             <AuthShowcase />
+            <Featured />
           </div>
         </div>
         <CardList />
