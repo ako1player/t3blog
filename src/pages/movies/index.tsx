@@ -28,9 +28,11 @@ export default function Movies(){
         />
         <h1 className='absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Movies</h1>
       </div>
-      {catPosts.data?.map((post:Slug) =>(
-        <Card item={post} key={post.id}/>
-      ))}
+      <div className="grid sm:grid-cols-4 grid-cols-2">
+        {catPosts.data?.map((post:Slug) =>(
+            <Card item={post} key={post.id}/>
+        ))}
+      </div>
     </div>
   )
 }
