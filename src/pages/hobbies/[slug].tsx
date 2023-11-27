@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 import React from 'react'
 import { api } from '~/utils/api'
 import { Comments } from '~/components/comments/Comments';
@@ -15,8 +15,8 @@ export default function HobbyPost(props:Slug){
 
   return (
     <div>
-      <h1 className='text-white'>{singlePost.data?.title}</h1>
-      <span className='text-white prose-h1:text-white prose' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
+      <h1 className='text-white text-6xl'>{singlePost.data?.title}</h1>
+      <span className='text-white prose-h1:text-white prose prose-h2:text-white prose-h3:text-white' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
       <Comments postSlug={props.slug} />
     </div>
   )

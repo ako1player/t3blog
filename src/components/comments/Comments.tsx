@@ -36,17 +36,18 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
         <div className="pt-2 text-white">
         {status === "authenticated" ? (
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            <form onSubmit={handleSubmit} className="">
+            <form onSubmit={handleSubmit} className="flex items-end mb-1">
                 <textarea
                     ref={textareaRef}
-                    className={`w-full rounded sm:w-1/3 overflow-hidden bg-inherit outline-none resize-none h-6 border-b`}
+                    className={`w-full sm:w-1/3 overflow-hidden bg-inherit outline-none resize-none border-b h-6`}
                     placeholder="write a comment..."
-                    
+                    onChange={(e) => setDesc(e.target.value)}
+                    value={desc}
                 />
-                <button type="submit" className="hover:text-white hover:bg-inherit border rounded bg-white text-purple-800 text-sm">Post</button>
+                <button type="submit" className="hover:text-white hover:bg-inherit border rounded bg-white text-purple-800 text-sm w-10">Post</button>    
             </form>
         ) : (
-            <button onClick={()=> signIn()} className="w-full bg-violet-800 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
+            <button onClick={()=>signIn()} className="w-full bg-violet-800 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
         )}
         <div className="w-full border rounded sm:w-1/3">
             {data.data?.length === 0 ? <p className="text-center align-middle">No Comments</p> :
@@ -68,7 +69,7 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
                                 <span>{item.user.name} |</span>
                                 <span>{item.createdAt.toString().slice(3,15)}</span>
                             </div>
-                            <p className="break-words ">{item.desc}</p>
+                            <p className="break-words">{item.desc}</p>
                             </div>
                         </div>
                         ))

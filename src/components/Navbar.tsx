@@ -34,7 +34,7 @@ export const Navbar = () => {
                 <div className="flex">
                     <Link href={'/'} className='mx-2 hover:text-purple-400'>Home</Link>
                     <div className='relative'>
-                        <Link href={''} className='mx-2' onClick={()=>setToggle(!toggle)}>Categories<ChevronDown size="15"/></Link>
+                        <p className='mx-2 cursor-pointer hover:text-purple-400' onClick={()=>setToggle(!toggle)}>Categories<ChevronDown size="15"/></p>
                         {toggle && 
                             <div className='absolute flex flex-col ml-4 rounded bg-violet-800' onMouseLeave={()=>setToggle(!toggle)}>
                                 {categories.data?.map((cat)=>(

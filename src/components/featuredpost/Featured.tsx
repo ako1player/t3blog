@@ -17,7 +17,7 @@ export const Featured = () => {
   return (
     <div>
         <h1 className='text-3xl text-white'>Random Post:</h1>
-        {isLoading && <span>...is loading</span>}
+        {isLoading && <span className='text-white'>...is loading</span>}
         {data === undefined ? 
           featuredPost?.map((f:string, idx:number) => <Card item={f} key={idx} />)
           :
