@@ -17,9 +17,6 @@ export const Card = ({item}:Post) => {
           className="mb-2 text-xl font-medium leading-tight ">
           {item.title}
         </h5>
-        <p className="mb-4 text-base ">
-          {item.desc}
-        </p>
         <div>
           <button
             type="button"

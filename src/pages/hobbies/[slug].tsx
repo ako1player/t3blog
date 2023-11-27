@@ -16,7 +16,7 @@ export default function HobbyPost(props:Slug){
   return (
     <div>
       <h1 className='text-white'>{singlePost.data?.title}</h1>
-      <p className='text-white'>{singlePost.data?.desc}</p>
+      <span className='text-white prose-h1:text-white prose' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
       <Comments postSlug={props.slug} />
     </div>
   )

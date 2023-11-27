@@ -17,12 +17,14 @@ export default function ShowPost(props:Slug){
     <div className='pt-10'>
       <div className='sm:flex flex-row'>
         <div className='sm:grid md:grid-flow-col'>
-          <Image src={'https://assets.teenvogue.com/photos/615327f812eb503af0cde8b3/1:1/w_3132,h_3132,c_limit/SquidGame_Unit_104_1570.jpg'}
-          alt='Squid Games Picture'
+          {/* <Image src={}  
+          alt=''
           width={400}
           height={400}
-          />
-          <p className='text-white'>The Squid Game is a South Korean television series that has gained immense popularity worldwide. The show revolves around a group of financially struggling individuals who participate in a deadly game to win a large sum of money. The series is a commentary on the harsh realities of life and the lengths people will go to for financial gain. The show's cinematography, acting, and storyline have been praised by critics and audiences alike. The Squid Game is a must-watch for those who enjoy thought-provoking and intense dramas. Its success has made it a cultural phenomenon and a testament to the power of storytelling.</p>
+          className='rounded lg:pl-2 pl-7 text-center'
+          /> */}
+          <h1 className='text-white'>{singlePost.data?.title}</h1>
+          <span className='text-white prose-h1:text-white prose' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
         </div>
         <Sidebar />
       </div>

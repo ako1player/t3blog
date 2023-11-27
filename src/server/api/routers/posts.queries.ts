@@ -16,9 +16,12 @@ const postsQueriesRouters = createTRPCRouter({
     }),
 
     getSinglePost: publicProcedure.input(z.string()).query(async ({ctx, input:slug}) =>{
-        const singlePost = await ctx.db.post.findUnique({
+        const singlePost = await ctx.db.post.update({
             where: {
                 slug
+            },
+            data:{
+                views: {increment: 1}
             },
             include:{
                 user: true,

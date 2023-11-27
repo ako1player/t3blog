@@ -42,6 +42,12 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+    NEXT_PUBLIC_API_KEY: z.string(),
+    NEXT_PUBLIC_AUTH_DOMAIN: z.string(),
+    NEXT_PUBLIC_PROJECT_ID: z.string(),
+    NEXT_PUBLIC_STORAGE_BUCKET: z.string(),
+    NEXT_PUBLIC_MSG_SENDER_ID: z.string(),
+    NEXT_PUBLIC_APP_ID: z.string(),
   },
 
   /**
@@ -57,6 +63,12 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
+    NEXT_PUBLIC_AUTH_DOMAIN: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    NEXT_PUBLIC_PROJECT_ID: process.env.NEXT_PUBLIC_PROJECT_ID,
+    NEXT_PUBLIC_STORAGE_BUCKET: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    NEXT_PUBLIC_MSG_SENDER_ID: process.env.NEXT_PUBLIC_MSG_SENDER_ID,
+    NEXT_PUBLIC_APP_ID: process.env.NEXT_PUBLIC_APP_ID,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
