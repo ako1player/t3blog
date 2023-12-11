@@ -2,10 +2,9 @@ import React from 'react'
 import { Card } from '../Card/Card'
 import { api } from '~/utils/api'
 
-  
 export const CardList = () => {
 
-    const posts = api.posts.get.useQuery()
+    const posts = api.posts.get.useQuery();
     // const data = [{
     //     title: "Test",
     //     desc: "DEsc",

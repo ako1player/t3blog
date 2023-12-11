@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import React from 'react'
 import { api } from '~/utils/api'
-import { Comments } from '~/components/comments/Comments';
+import Slug from '~/components/Slug/Slug';
 
 type Slug = {
   title: string,
@@ -11,14 +11,8 @@ type Slug = {
 
 export default function HobbyPost(props:Slug){
   // const slug = useParams();
-  const singlePost = api.posts.getSinglePost.useQuery(props.slug);
-
   return (
-    <div>
-      <h1 className='text-white text-6xl'>{singlePost.data?.title}</h1>
-      <span className='text-white prose-h1:text-white prose prose-h2:text-white prose-h3:text-white' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
-      <Comments postSlug={props.slug} />
-    </div>
+    <Slug slug={props.slug} />
   )
 }
 

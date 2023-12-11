@@ -39,15 +39,15 @@ export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {
             <form onSubmit={handleSubmit} className="flex items-end mb-1">
                 <textarea
                     ref={textareaRef}
-                    className={`w-full sm:w-1/3 overflow-hidden bg-inherit outline-none resize-none border-b h-6`}
+                    className={`w-full sm:w-1/3 overflow-hidden bg-inherit outline-none resize-none border-b h-6 placeholder:text-sky-200`}
                     placeholder="write a comment..."
                     onChange={(e) => setDesc(e.target.value)}
                     value={desc}
                 />
-                <button type="submit" className="hover:text-white hover:bg-inherit border rounded bg-white text-purple-800 text-sm w-10">Post</button>    
+                <button type="submit" className="hover:text-white hover:bg-inherit border rounded bg-white text-sky-600 text-sm w-10">Post</button>    
             </form>
         ) : (
-            <button onClick={()=>signIn()} className="w-full bg-violet-800 border rounded hover:bg-purple-800 sm:w-1/3">Login to write a comment</button>
+            <button onClick={()=>signIn()} className="w-full border r sm:w-1/3 text-sky-600 bg-white rounded hover:text-white hover:bg-sky-600">Login to write a comment</button>
         )}
         <div className="w-full border rounded sm:w-1/3">
             {data.data?.length === 0 ? <p className="text-center align-middle">No Comments</p> :

@@ -144,7 +144,7 @@ export default function AddPost(){
                     />
                 </div>
             </div>
-            <button type='submit' className='px-10 mt-4 text-purple-800 bg-white rounded hover:text-white hover:bg-purple-800 text-center'>Post</button>
+            <button type='submit' className='px-10 mt-4 text-sky-600 bg-white rounded hover:text-white hover:bg-sky-600 text-center'>Post</button>
         </form>            
         </div>
     )
