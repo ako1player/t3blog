@@ -114,7 +114,7 @@ export default function AddPost(){
                     Category:
                     <select className='text-white border-b outline-none bg-inherit sm:ml-1' required onChange={(e)=> setCategory(e.target.value)} value={category}>
                     {categories.data?.map((cat)=>(
-                        <option key={cat.id} value={cat.title}>{cat.title}</option>
+                        <option className='text-sky-400' key={cat.id} value={cat.title}>{cat.title}</option>
                     ))}
                     </select>
                 </label>

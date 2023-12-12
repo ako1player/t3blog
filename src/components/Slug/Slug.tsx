@@ -1,6 +1,8 @@
 import { api } from "~/utils/api";
 import { Sidebar } from "../sidebar/Sidebar";
 import { Comments } from "../comments/Comments";
+import Image from "next/image";
+import { lazy } from "react";
 
 export default function Slug(slug){
     const singlePost = api.posts.getSinglePost.useQuery(slug.slug);
@@ -9,7 +11,7 @@ export default function Slug(slug){
       <div className='pt-10'>
         <div className='sm:flex flex-row justify-between'>
           <div className='sm:grid md:grid-flow-col'>
-            {/* Image */}
+            <Image src={singlePost.data?.img} alt={singlePost.data?.title} width={200} height={200} priority />
             <div className='flex flex-col'>
               <h1 className='text-white text-6xl'>{singlePost.data?.title}</h1>
               <span className='text-white prose-h1:text-white prose prose-h2:text-white prose-h3:text-white' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
