@@ -4,7 +4,7 @@
 
 
 body{
-    background-image: linear-gradient(to top left, white, #489dcf);
+    background-image: linear-gradient(to top left, rgb(146, 199, 230), #489dcf);
     margin: 0;
     padding: 0;
     height: 100vh;

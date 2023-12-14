@@ -1,14 +1,9 @@
 import type { GetStaticProps } from 'next';
 import React from 'react'
 import Slug from '~/components/Slug/Slug';
+import type { SlugType } from '../../Constants/Types';
 
-type Slug = {
-  title: string,
-  desc: string,
-  slug: string
-}
-
-export default function AnimePost(props:Slug){
+export default function AnimePost(props:SlugType){
   // const slug = useParams();
   return (
     <Slug slug={props.slug} />

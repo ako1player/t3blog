@@ -1,10 +1,9 @@
 "use client"
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-import React, { ChangeEvent, FormEvent, useEffect, useState, useRef } from "react";
+import React, { type FormEvent, useEffect, useState, useRef } from "react";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import { signIn } from "next-auth/react";
 
 export const Comments: NextPage<{postSlug: string}> = ({postSlug}) => {

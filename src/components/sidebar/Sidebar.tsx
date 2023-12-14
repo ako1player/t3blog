@@ -10,7 +10,7 @@ export const Sidebar = () => {
         <h1>Recent Posts:</h1>
         <div className='flex flex-col'>
           {posts.data?.map((p, key) =>(
-            <Link href={`/${p.catSlug}/${p.slug}`} className='hover:text-purple-400' key={key}>{p.title}</Link>
+            <Link href={`/${p.catSlug}/${p.slug}`} className='hover:text-sky-600' key={key}>{p.title}</Link>
           ))}
         </div>
     </div>

@@ -2,13 +2,19 @@ import { api } from "~/utils/api";
 import { Sidebar } from "../sidebar/Sidebar";
 import { Comments } from "../comments/Comments";
 import Image from "next/image";
-import { lazy } from "react";
+import type { SlugType } from "../../Constants/Types";
+import { Eye } from "styled-icons/bootstrap";
 
-export default function Slug(slug){
+export default function Slug(slug:Partial<SlugType>){
     const singlePost = api.posts.getSinglePost.useQuery(slug.slug);
-
+    if(singlePost.data === undefined){
+      return(
+        <div>Page Not Found</div>
+      )
+    }
     return (
-      <div className='pt-10'>
+      <div className='pt-10 mx-2'>
+        <span className="text-sm text-white"><Eye size={15}/> {singlePost.data?.views}</span>
         <div className='sm:flex flex-row justify-between'>
           <div className='sm:grid md:grid-flow-col'>
             <Image src={singlePost.data?.img} alt={singlePost.data?.title} width={200} height={200} priority />
