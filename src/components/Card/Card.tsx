@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { type Post } from '~/Constants/Types'
+import type { Post } from '~/Constants/Types'
 
 export const Card = ({item}:Post) => {
   return (
