@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { SlugType } from "../../Constants/Types";
 import { Eye } from "styled-icons/bootstrap";
 
-export default function Slug(slug:Partial<SlugType>){
+export default function Slug(slug:SlugType){
     const singlePost = api.posts.getSinglePost.useQuery(slug.slug);
     if(singlePost.data === undefined){
       return(
@@ -19,7 +19,7 @@ export default function Slug(slug:Partial<SlugType>){
           <div className='sm:grid md:grid-flow-col'>
             <Image src={singlePost.data?.img} alt={singlePost.data?.title} width={200} height={200} priority />
             <div className='flex flex-col'>
-              <h1 className='text-white text-6xl'>{singlePost.data?.title}</h1>
+              <p className='text-white text-5xl'>{singlePost.data?.title}</p>
               <span className='text-white prose-h1:text-white prose prose-h2:text-white prose-h3:text-white' dangerouslySetInnerHTML={{__html: singlePost.data?.desc}}/>
             </div>
           </div>
