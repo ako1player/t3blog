@@ -3,8 +3,11 @@ import { api } from '~/utils/api'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from '~/utils/firebase';
 import { useRouter } from 'next/router'
-import ReactQuill from "react-quill";  
+// import ReactQuill from "react-quill";  
 import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default function AddPost(){
     const [title, setTitle] = useState('');
