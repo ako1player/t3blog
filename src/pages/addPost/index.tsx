@@ -3,8 +3,12 @@ import { api } from '~/utils/api'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from '~/utils/firebase';
 import { useRouter } from 'next/router'
-import ReactQuill from "react-quill";  
+// import ReactQuill from "react-quill";  
 import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
+import { useSession } from 'next-auth/react';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export default function AddPost(){
     const [title, setTitle] = useState('');
@@ -15,6 +19,13 @@ export default function AddPost(){
     const categories = api.categories.get.useQuery();
     const post = api.posts.createPost.useMutation();
     const router = useRouter();
+    const { data: sessionData} = useSession();
+    const user = api.users.getUser.useQuery();
+    const isAdmin = user.data?.filter((u) => {
+        if(u.id === sessionData?.user.id && u.role ==='Admin'){
+            return u;
+        }
+    })
 
     // const { data: sessionData, status } = useSession();
     // const user = api.users.getUser.useQuery();
@@ -93,6 +104,13 @@ export default function AddPost(){
         if(res){
             router.push(`/${category}/${slugify(title)}`)
         }
+    }
+    if(!isAdmin){
+        return (
+            <div className='text-center'>
+                <h1 className='text-2xl text-white'>Access Denied</h1>
+            </div>
+        )
     }
     return (
         <div className='text-center'>

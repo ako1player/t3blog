@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { SlugType } from "../../Constants/Types";
 import { Eye } from "styled-icons/bootstrap";
 
-export default function Slug(slug:Partial<SlugType>){
+export default function Slug(slug:SlugType){
     const singlePost = api.posts.getSinglePost.useQuery(slug.slug);
     if(singlePost.data === undefined){
       return(
